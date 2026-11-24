@@ -3,23 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Qura Tul Ain | Web Developer</title>
+  <title>Qura Tul Ain — Web Developer Portfolio</title>
+  <!-- Google Fonts matching the editorial typography -->
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Anton&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
   <style>
-    /* Reset & Variables */
     :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-hover: #0284c7;
+      --bg-dark: #0e0d0c;
+      --bg-card: #161514;
+      --text-cream: #e8e1d5;
+      --text-muted: #8c857b;
+      --accent-rose: #a35d61;
+      --border-line: rgba(232, 225, 213, 0.14);
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     html {
@@ -27,302 +30,417 @@
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
+      background-color: var(--bg-dark);
+      color: var(--text-cream);
+      font-family: 'Plus Jakarta Sans', sans-serif;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* Navigation */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(8px);
-      padding: 1rem 5%;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Top Bar */
+    .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-
-    nav a {
-      color: var(--text-main);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    /* Sections General */
-    section {
-      padding: 6rem 10%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    h2 {
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: var(--accent);
+      padding: 1.5rem 0;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
     }
 
     /* Hero Section */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
+      position: relative;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border-line);
     }
 
-    .hero p.greeting {
-      color: var(--accent);
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .hero p.tagline {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      max-width: 600px;
+    .hero-title-wrapper {
+      position: relative;
+      text-align: center;
       margin-bottom: 2rem;
     }
 
-    .btn {
-      display: inline-block;
-      background: var(--accent);
-      color: var(--bg-color);
-      padding: 0.8rem 1.8rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: background 0.3s, transform 0.2s;
+    .hero-mega-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(5rem, 19.5vw, 15.5rem);
+      line-height: 0.85;
+      letter-spacing: 0.02em;
+      color: var(--text-cream);
+      text-transform: uppercase;
+      user-select: none;
     }
 
-    .btn:hover {
-      background: var(--accent-hover);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    /* About & Skills */
-    .about-content {
-      text-align: center;
-      max-width: 750px;
-      margin: 0 auto 3rem auto;
-      color: var(--text-muted);
-      font-size: 1.1rem;
-    }
-
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .skill-tag {
-      background: var(--card-bg);
-      padding: 0.6rem 1.2rem;
-      border-radius: 20px;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      font-weight: 500;
-    }
-
-    /* Projects */
-    .projects-grid {
+    .hero-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: 1fr 1.2fr 1fr;
+      align-items: end;
       gap: 2rem;
+      margin-top: -5vw;
+      position: relative;
+      z-index: 2;
     }
 
-    .project-card {
-      background: var(--card-bg);
-      padding: 1.8rem;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: transform 0.3s;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .project-card h3 {
-      margin-bottom: 0.8rem;
-      font-size: 1.4rem;
-    }
-
-    .project-card p {
-      color: var(--text-muted);
-      margin-bottom: 1.2rem;
-      font-size: 0.95rem;
-    }
-
-    .project-links a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      margin-right: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .project-links a:hover {
-      text-decoration: underline;
-    }
-
-    /* Contact */
-    .contact-box {
-      text-align: center;
-      background: var(--card-bg);
-      padding: 3rem 2rem;
-      border-radius: 12px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .contact-box p {
-      color: var(--text-muted);
+    .hero-left h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 1.35rem;
+      line-height: 1.3;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       margin-bottom: 1.5rem;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--text-muted);
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1.3rem;
+      border: 1px solid var(--border-line);
+      border-radius: 50px;
+      color: var(--text-cream);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--accent-rose);
+      background: rgba(163, 93, 97, 0.15);
+    }
+
+    .sparkle {
+      color: var(--text-cream);
       font-size: 0.9rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    /* Mobile Responsive */
-    @media (max-width: 600px) {
-      nav ul {
-        gap: 1rem;
-        font-size: 0.9rem;
-      }
-      section {
-        padding: 5rem 6%;
-      }
+    .signature {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.3rem;
+      color: var(--accent-rose);
+      margin-top: 2.2rem;
+      opacity: 0.9;
     }
-  </style>
-</head>
-<body>
 
-  <!-- Navigation -->
-  <header>
-    <a href="#" class="logo">Qura Tul Ain</a>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    /* Center Portrait Frame */
+    .hero-center {
+      display: flex;
+      justify-content: center;
+    }
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <p class="greeting">Hi, my name is</p>
-    <h1>Qura Tul Ain.</h1>
-    <p class="tagline">
-      I am a passionate Web Developer specializing in building clean, responsive, and user-friendly websites and web applications.
-    </p>
-    <a href="#projects" class="btn">View My Work</a>
-  </section>
+    .portrait-box {
+      width: 100%;
+      max-width: 340px;
+      height: 410px;
+      background: linear-gradient(180deg, #24211e 0%, #0e0d0c 100%);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-line);
+    }
 
-  <!-- About & Skills Section -->
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="about-content">
-      <p>
-        Hello! I'm Qura Tul Ain, a web developer who loves turning ideas into functional digital experiences. I focus on writing clean code, crafting responsive layouts, and ensuring smooth performance across all devices.
-      </p>
-    </div>
-    <div class="skills-grid">
-      <span class="skill-tag">HTML5</span>
-      <span class="skill-tag">CSS3</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">Responsive Design</span>
-      <span class="skill-tag">Git & GitHub</span>
-      <span class="skill-tag">React / Frontend</span>
-    </div>
-  </section>
+    .portrait-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.05) brightness(0.92);
+    }
 
-  <!-- Projects Section -->
-  <section id="projects">
-    <h2>Featured Projects</h2>
-    <div class="projects-grid">
-      
-      <div class="project-card">
-        <h3>E-Commerce Landing Page</h3>
-        <p>A modern, mobile-first online store interface built with semantic HTML, CSS Grid, and interactive cart features.</p>
-        <div class="project-links">
-          <a href="#" target="_blank">Live Demo</a>
-          <a href="#" target="_blank">Source Code</a>
-        </div>
-      </div>
+    .hero-right {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 100%;
+    }
 
-      <div class="project-card">
-        <h3>Task Manager App</h3>
-        <p>A clean productivity web application allowing users to add, filter, and persist daily tasks using browser LocalStorage.</p>
-        <div class="project-links">
-          <a href="#" target="_blank">Live Demo</a>
-          <a href="#" target="_blank">Source Code</a>
-        </div>
-      </div>
+    .hero-bio {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 260px;
+      text-align: left;
+      margin-bottom: 3rem;
+    }
 
-      <div class="project-card">
-        <h3>Weather Dashboard</h3>
-        <p>Real-time weather forecast app fetching live data from a public REST API with dynamic city search.</p>
-        <div class="project-links">
-          <a href="#" target="_blank">Live Demo</a>
-          <a href="#" target="_blank">Source Code</a>
-        </div>
-      </div>
+    .location-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: right;
+    }
 
-    </div>
-  </section>
+    .globe-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border-line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+    }
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Get In Touch</h2>
-    <div class="contact-box">
-      <p>I am currently open to freelance projects and web development opportunities. Feel free to reach out!</p>
-      <a href="mailto:quratulain@example.com" class="btn">Say Hello</a>
-    </div>
-  </section>
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2.5rem 0 1.8rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-cream);
+    }
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 Qura Tul Ain. Built with HTML & CSS.</p>
-  </footer>
+    .section-header a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
 
-</body>
-</html>
+    .section-header a:hover {
+      color: var(--text-cream);
+    }
+
+    /* Selected Projects */
+    .projects-section {
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-line);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(232, 225, 213, 0.35);
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .project-title {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .project-sub {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: none;
+      letter-spacing: 0.02em;
+      font-weight: 400;
+    }
+
+    .project-mockup {
+      height: 210px;
+      border-radius: 3px;
+      margin-bottom: 1.2rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mockup-1 {
+      background: linear-gradient(135deg, #2b1316 0%, #140b0c 100%);
+    }
+
+    .mockup-2 {
+      background: linear-gradient(135deg, #241f18 0%, #12100d 100%);
+    }
+
+    .mockup-3 {
+      background: linear-gradient(135deg, #2a241e 0%, #151310 100%);
+      text-align: center;
+    }
+
+    .project-mockup h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 1.25;
+      color: var(--text-cream);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.6rem;
+      border: 1px solid var(--border-line);
+      color: var(--text-muted);
+    }
+
+    /* Split Section: Process & Tools */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .process-col {
+      padding: 3rem 2.5rem 3rem 0;
+      border-right: 1px solid var(--border-line);
+    }
+
+    .tools-col {
+      padding: 3rem 0 3rem 2.5rem;
+    }
+
+    .col-heading {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .process-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1.5rem;
+      align-items: end;
+    }
+
+    .process-list {
+      list-style: none;
+    }
+
+    .process-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .process-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      min-width: 24px;
+    }
+
+    .process-info h4 {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .process-info p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .process-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      color: var(--text-muted);
+      border-left: 1px solid var(--border-line);
+      padding-left: 1rem;
+    }
+
+    /* Tools Grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.9rem;
+    }
+
+    .tool-box {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.85rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-line);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tool-icon {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--border-line);
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+      font-size: 0.75rem;
+      color: var(--text-cream);
+    }
+
+    .more-tools {
+      margin-top: 1.2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Testimonials (Kind Words) */
+    .testimonials-section {
+      padding: 3rem 0 4rem;
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      display: flex;
