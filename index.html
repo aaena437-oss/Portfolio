@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Qura Tul Ain — Web Developer Portfolio</title>
-  <!-- Google Fonts matching the editorial typography -->
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
   <link href="https://googleapis.com/css2?family=Anton&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -70,7 +69,7 @@
 
     .hero-mega-title {
       font-family: 'Anton', sans-serif;
-      font-size: clamp(5rem, 19.5vw, 15.5rem);
+      font-size: clamp(4.5rem, 18vw, 15rem);
       line-height: 0.85;
       letter-spacing: 0.02em;
       color: var(--text-cream);
@@ -83,7 +82,7 @@
       grid-template-columns: 1fr 1.2fr 1fr;
       align-items: end;
       gap: 2rem;
-      margin-top: -5vw;
+      margin-top: -4.5vw;
       position: relative;
       z-index: 2;
     }
@@ -444,3 +443,5 @@
 
     .testimonial-card {
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
