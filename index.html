@@ -1,13 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0e0d0c">
+  <meta name="description" content="Qura Tul Ain — Creative Web Developer Portfolio">
   <title>Qura Tul Ain — Web Developer Portfolio</title>
-  <link rel="preconnect" href="https://googleapis.com">
-  <link rel="preconnect" href="https://gstatic.com" crossorigin>
-  <link href="https://googleapis.com/css2?family=Anton&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg-dark: #0e0d0c;
@@ -26,35 +31,79 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 30px;
     }
 
     body {
-      background-color: var(--bg-dark);
+      background: var(--bg-dark);
       color: var(--text-cream);
       font-family: 'Plus Jakarta Sans', sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
     .container {
       max-width: 1200px;
-      margin: 0 auto;
+      margin: auto;
       padding: 0 2rem;
     }
 
-    /* Top Bar */
+    /* Navigation */
+
     .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 0;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
+      font-size: .72rem;
+      letter-spacing: .15em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
 
-    /* Hero Section */
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--text-cream);
+      text-decoration: none;
+      letter-spacing: .04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-cream);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border-line);
+      color: var(--text-cream);
+      padding: .5rem .8rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+
     .hero {
       position: relative;
       padding-bottom: 4rem;
@@ -70,8 +119,8 @@
     .hero-mega-title {
       font-family: 'Anton', sans-serif;
       font-size: clamp(4.5rem, 18vw, 15rem);
-      line-height: 0.85;
-      letter-spacing: 0.02em;
+      line-height: .85;
+      letter-spacing: .02em;
       color: var(--text-cream);
       text-transform: uppercase;
       user-select: none;
@@ -92,7 +141,7 @@
       font-weight: 400;
       font-size: 1.35rem;
       line-height: 1.3;
-      letter-spacing: 0.04em;
+      letter-spacing: .04em;
       text-transform: uppercase;
       margin-bottom: 1.5rem;
     }
@@ -100,26 +149,22 @@
     .pill-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      padding: 0.65rem 1.3rem;
+      gap: .6rem;
+      padding: .65rem 1.3rem;
       border: 1px solid var(--border-line);
       border-radius: 50px;
       color: var(--text-cream);
       text-decoration: none;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
+      font-size: .72rem;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      transition: all 0.3s ease;
+      transition: all .3s ease;
     }
 
     .pill-btn:hover {
       border-color: var(--accent-rose);
-      background: rgba(163, 93, 97, 0.15);
-    }
-
-    .sparkle {
-      color: var(--text-cream);
-      font-size: 0.9rem;
+      background: rgba(163, 93, 97, .15);
+      transform: translateY(-2px);
     }
 
     .signature {
@@ -127,10 +172,11 @@
       font-size: 2.3rem;
       color: var(--accent-rose);
       margin-top: 2.2rem;
-      opacity: 0.9;
+      opacity: .9;
     }
 
-    /* Center Portrait Frame */
+    /* Portrait */
+
     .hero-center {
       display: flex;
       justify-content: center;
@@ -140,18 +186,40 @@
       width: 100%;
       max-width: 340px;
       height: 410px;
-      background: linear-gradient(180deg, #24211e 0%, #0e0d0c 100%);
+      background:
+        radial-gradient(ellipse at 50% 30%, #4a3432 0%, transparent 60%),
+        linear-gradient(180deg, #24211e 0%, #0e0d0c 100%);
       border-radius: 4px;
       overflow: hidden;
       position: relative;
       border: 1px solid var(--border-line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portrait-placeholder {
+      text-align: center;
+    }
+
+    .portrait-placeholder span {
+      font-family: 'Great Vibes', cursive;
+      font-size: 6rem;
+      color: rgba(232, 225, 213, .8);
+    }
+
+    .portrait-placeholder p {
+      font-size: .65rem;
+      letter-spacing: .2em;
+      color: var(--text-muted);
+      text-transform: uppercase;
     }
 
     .portrait-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: contrast(1.05) brightness(0.92);
+      filter: contrast(1.05) brightness(.92);
     }
 
     .hero-right {
@@ -164,7 +232,7 @@
     }
 
     .hero-bio {
-      font-size: 0.85rem;
+      font-size: .85rem;
       color: var(--text-muted);
       max-width: 260px;
       text-align: left;
@@ -174,9 +242,9 @@
     .location-badge {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
+      gap: .8rem;
+      font-size: .7rem;
+      letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--text-muted);
       text-align: right;
@@ -192,14 +260,15 @@
       font-size: 1rem;
     }
 
-    /* Section Headers */
+    /* General section headings */
+
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 2.5rem 0 1.8rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
+      font-size: .78rem;
+      letter-spacing: .16em;
       text-transform: uppercase;
       color: var(--text-cream);
     }
@@ -207,14 +276,23 @@
     .section-header a {
       color: var(--text-muted);
       text-decoration: none;
-      transition: color 0.3s;
+      transition: color .3s;
     }
 
     .section-header a:hover {
       color: var(--text-cream);
     }
 
-    /* Selected Projects */
+    .section-label {
+      color: var(--accent-rose);
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: .7rem;
+    }
+
+    /* Projects */
+
     .projects-section {
       padding-bottom: 4rem;
       border-bottom: 1px solid var(--border-line);
@@ -233,18 +311,18 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      transition: transform .3s ease, border-color .3s ease;
     }
 
     .project-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(232, 225, 213, 0.35);
+      transform: translateY(-5px);
+      border-color: rgba(232, 225, 213, .35);
     }
 
     .project-meta {
       display: flex;
       align-items: baseline;
-      gap: 0.6rem;
+      gap: .6rem;
       margin-bottom: 1.2rem;
     }
 
@@ -255,18 +333,18 @@
     }
 
     .project-title {
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
+      font-size: .85rem;
+      letter-spacing: .1em;
       text-transform: uppercase;
       font-weight: 600;
     }
 
     .project-sub {
       display: block;
-      font-size: 0.72rem;
+      font-size: .72rem;
       color: var(--text-muted);
       text-transform: none;
-      letter-spacing: 0.02em;
+      letter-spacing: .02em;
       font-weight: 400;
     }
 
@@ -278,7 +356,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, .06);
       position: relative;
       overflow: hidden;
     }
@@ -299,27 +377,55 @@
     .project-mockup h4 {
       font-family: 'Playfair Display', serif;
       font-weight: 400;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       line-height: 1.25;
       color: var(--text-cream);
+    }
+
+    .mockup-1::after {
+      content: '✦';
+      position: absolute;
+      right: 20px;
+      bottom: 5px;
+      font-size: 5rem;
+      color: rgba(255,255,255,.08);
+    }
+
+    .mockup-2::after {
+      content: '✧';
+      position: absolute;
+      right: 20px;
+      bottom: 0;
+      font-size: 6rem;
+      color: rgba(255,255,255,.08);
+    }
+
+    .mockup-3::after {
+      content: '❋';
+      position: absolute;
+      right: 15px;
+      bottom: 0;
+      font-size: 5rem;
+      color: rgba(255,255,255,.08);
     }
 
     .project-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
+      gap: .4rem;
     }
 
     .tag {
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
+      font-size: .62rem;
+      letter-spacing: .1em;
       text-transform: uppercase;
-      padding: 0.3rem 0.6rem;
+      padding: .3rem .6rem;
       border: 1px solid var(--border-line);
       color: var(--text-muted);
     }
 
-    /* Split Section: Process & Tools */
+    /* Process and tools */
+
     .split-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -336,13 +442,13 @@
     }
 
     .col-heading {
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
+      font-size: .78rem;
+      letter-spacing: .16em;
       text-transform: uppercase;
       margin-bottom: 2rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: .5rem;
     }
 
     .process-layout {
@@ -370,43 +476,44 @@
     }
 
     .process-info h4 {
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
+      font-size: .75rem;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      margin-bottom: 0.2rem;
+      margin-bottom: .2rem;
     }
 
     .process-info p {
-      font-size: 0.75rem;
+      font-size: .75rem;
       color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .process-quote {
       font-family: 'Playfair Display', serif;
       font-size: 1.05rem;
-      line-height: 1.4;
+      line-height: 1.5;
       color: var(--text-muted);
       border-left: 1px solid var(--border-line);
       padding-left: 1rem;
     }
 
-    /* Tools Grid */
+    /* Tools */
+
     .tools-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 0.9rem;
+      gap: .9rem;
     }
 
     .tool-box {
       display: flex;
       align-items: center;
-      gap: 0.9rem;
-      padding: 0.85rem 1rem;
+      gap: .9rem;
+      padding: .85rem 1rem;
       background: var(--bg-card);
       border: 1px solid var(--border-line);
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
+      font-size: .75rem;
+      letter-spacing: .12em;
       text-transform: uppercase;
     }
 
@@ -417,19 +524,20 @@
       display: grid;
       place-items: center;
       font-weight: 600;
-      font-size: 0.75rem;
+      font-size: .75rem;
       color: var(--text-cream);
     }
 
     .more-tools {
       margin-top: 1.2rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
+      font-size: .7rem;
+      letter-spacing: .15em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
 
-    /* Testimonials (Kind Words) */
+    /* Testimonials */
+
     .testimonials-section {
       padding: 3rem 0 4rem;
       border-bottom: 1px solid var(--border-line);
@@ -445,3 +553,824 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      padding: 1.7rem;
+      min-height: 220px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-line);
+      transition: border-color .3s;
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--accent-rose);
+    }
+
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      color: var(--accent-rose);
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+    .testimonial-card p {
+      color: var(--text-muted);
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .client-name {
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .client-role {
+      color: var(--text-muted);
+      font-size: .68rem;
+    }
+
+    /* About */
+
+    .about-section {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 4rem;
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border-line);
+      align-items: center;
+    }
+
+    .about-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .about-heading em {
+      color: var(--accent-rose);
+    }
+
+    .about-text p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.3rem;
+      line-height: 1.9;
+    }
+
+    /* Contact */
+
+    .contact-section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border-line);
+      text-align: center;
+    }
+
+    .contact-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-description {
+      color: var(--text-muted);
+      font-size: .9rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-email {
+      color: var(--text-cream);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 3vw, 1.8rem);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-rose);
+      padding-bottom: .4rem;
+      transition: color .3s;
+    }
+
+    .contact-email:hover {
+      color: var(--accent-rose);
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+
+    .contact-links a {
+      color: var(--text-muted);
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color .3s;
+    }
+
+    .contact-links a:hover {
+      color: var(--text-cream);
+    }
+
+    /* Footer */
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 0;
+      color: var(--text-muted);
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .footer-signature {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.6rem;
+      color: var(--accent-rose);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* Reveal animations */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        margin-top: 0;
+      }
+
+      .hero-center {
+        grid-column: 1 / -1;
+        grid-row: 1;
+      }
+
+      .hero-left,
+      .hero-right {
+        grid-row: 2;
+      }
+
+      .projects-grid,
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .process-quote {
+        margin-top: .5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 1.2rem;
+      }
+
+      .top-bar {
+        padding: 1.2rem 0;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        right: 1rem;
+        z-index: 10;
+        background: var(--bg-card);
+        border: 1px solid var(--border-line);
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 1.2rem;
+        min-width: 180px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero {
+        padding-bottom: 3rem;
+      }
+
+      .hero-mega-title {
+        font-size: 17vw;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-center {
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      .hero-left,
+      .hero-right {
+        grid-row: auto;
+      }
+
+      .hero-right {
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .hero-bio {
+        margin-bottom: 1.5rem;
+      }
+
+      .location-badge {
+        text-align: left;
+      }
+
+      .portrait-box {
+        height: 380px;
+        max-width: 300px;
+      }
+
+      .signature {
+        margin-top: 1.5rem;
+      }
+
+      .projects-grid,
+      .testimonials-grid,
+      .split-section,
+      .about-section {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        padding: 1.2rem;
+      }
+
+      .process-col {
+        padding: 2rem 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border-line);
+      }
+
+      .tools-col {
+        padding: 2rem 0;
+      }
+
+      .process-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .about-section {
+        gap: 2rem;
+        padding: 3rem 0;
+      }
+
+      .contact-section {
+        padding: 4rem 0;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .section-header {
+        font-size: .68rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Navigation -->
+    <header class="top-bar">
+      <a href="#home" class="logo">Qura Tul Ain.</a>
+
+      <button class="menu-toggle" id="menuToggle"
+        aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+
+      <div class="hero-title-wrapper">
+        <h1 class="hero-mega-title">PORTFOLIO</h1>
+      </div>
+
+      <div class="hero-grid">
+
+        <div class="hero-left reveal">
+          <p class="section-label">Creative Developer</p>
+
+          <h2>
+            Designing<br>
+            Digital<br>
+            Experiences.
+          </h2>
+
+          <a href="#projects" class="pill-btn">
+            Explore My Work <span class="sparkle">✦</span>
+          </a>
+
+          <div class="signature">Qura Tul Ain</div>
+        </div>
+
+        <div class="hero-center reveal">
+          <div class="portrait-box">
+
+            <!-- Replace this placeholder with your own photo:
+                 <img src="images/my-photo.jpg" alt="Qura Tul Ain">
+            -->
+
+            <div class="portrait-placeholder">
+              <span>Q</span>
+              <p>Your Portrait Here</p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="hero-right reveal">
+
+          <p class="hero-bio">
+            Hello! I'm Qura Tul Ain, a passionate web developer
+            who loves creating beautiful, functional and meaningful
+            digital experiences. I turn creative ideas into
+            elegant websites.
+          </p>
+
+          <div class="location-badge">
+            <div class="globe-icon">◎</div>
+            <span>Available for<br>Remote Projects</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects-section" id="projects">
+
+      <div class="section-header">
+        <span>01 / Selected Projects</span>
+        <a href="#contact">Have a Project? ↗</a>
+      </div>
+
+      <div class="projects-grid">
+
+        <article class="project-card reveal">
+
+          <div>
+            <div class="project-meta">
+              <span class="project-num">01.</span>
+              <div>
+                <h3 class="project-title">Fashion Store</h3>
+                <span class="project-sub">E-commerce Website</span>
+              </div>
+            </div>
+
+            <div class="project-mockup mockup-1">
+              <p class="section-label">New Collection</p>
+              <h4>Elegance<br>In Every Detail.</h4>
+            </div>
+          </div>
+
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+
+        </article>
+
+        <article class="project-card reveal">
+
+          <div>
+            <div class="project-meta">
+              <span class="project-num">02.</span>
+              <div>
+                <h3 class="project-title">Creative Studio</h3>
+                <span class="project-sub">Business Landing Page</span>
+              </div>
+            </div>
+
+            <div class="project-mockup mockup-2">
+              <p class="section-label">Creative Thinking</p>
+              <h4>Ideas Into<br>Experiences.</h4>
+            </div>
+          </div>
+
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Responsive</span>
+          </div>
+
+        </article>
+
+        <article class="project-card reveal">
+
+          <div>
+            <div class="project-meta">
+              <span class="project-num">03.</span>
+              <div>
+                <h3 class="project-title">Personal Blog</h3>
+                <span class="project-sub">Editorial Website</span>
+              </div>
+            </div>
+
+            <div class="project-mockup mockup-3">
+              <p class="section-label">The Journal</p>
+              <h4>Stories Worth<br>Sharing.</h4>
+            </div>
+          </div>
+
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">UI Design</span>
+          </div>
+
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Process and Tools -->
+    <section class="split-section">
+
+      <div class="process-col">
+
+        <h3 class="col-heading">
+          <span class="sparkle">✦</span> 02 / My Process
+        </h3>
+
+        <div class="process-layout">
+
+          <ul class="process-list">
+
+            <li class="process-item">
+              <span class="process-num">01</span>
+              <div class="process-info">
+                <h4>Discover</h4>
+                <p>Understanding the vision, goals and audience.</p>
+              </div>
+            </li>
+
+            <li class="process-item">
+              <span class="process-num">02</span>
+              <div class="process-info">
+                <h4>Design</h4>
+                <p>Creating layouts that are beautiful and user-friendly.</p>
+              </div>
+            </li>
+
+            <li class="process-item">
+              <span class="process-num">03</span>
+              <div class="process-info">
+                <h4>Develop</h4>
+                <p>Turning designs into responsive websites.</p>
+              </div>
+            </li>
+
+            <li class="process-item">
+              <span class="process-num">04</span>
+              <div class="process-info">
+                <h4>Deliver</h4>
+                <p>Testing, refining and launching the final experience.</p>
+              </div>
+            </li>
+
+          </ul>
+
+          <blockquote class="process-quote">
+            "Good design is not just what you see.
+            It's how beautifully everything works."
+          </blockquote>
+
+        </div>
+      </div>
+
+      <div class="tools-col">
+
+        <h3 class="col-heading">
+          <span class="sparkle">✦</span> 03 / Tools & Skills
+        </h3>
+
+        <div class="tools-grid">
+
+          <div class="tool-box">
+            <span class="tool-icon">H</span>
+            HTML5
+          </div>
+
+          <div class="tool-box">
+            <span class="tool-icon">C</span>
+            CSS3
+          </div>
+
+          <div class="tool-box">
+            <span class="tool-icon">JS</span>
+            JavaScript
+          </div>
+
+          <div class="tool-box">
+            <span class="tool-icon">F</span>
+            Figma
+          </div>
+
+          <div class="tool-box">
+            <span class="tool-icon">G</span>
+            Git
+          </div>
+
+          <div class="tool-box">
+            <span class="tool-icon">W</span>
+            WordPress
+          </div>
+
+        </div>
+
+        <p class="more-tools">
+          More tools & technologies coming soon ✦
+        </p>
+
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+
+      <div class="section-header">
+        <span>04 / Kind Words</span>
+        <span>Client Experiences</span>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <article class="testimonial-card reveal">
+          <div>
+            <div class="quote-mark">“</div>
+            <p>
+              A beautiful approach to design with attention
+              to detail and a great understanding of aesthetics.
+            </p>
+          </div>
+          <div>
+            <h4 class="client-name">Client Name</h4>
+            <span class="client-role">Project Collaboration</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card reveal">
+          <div>
+            <div class="quote-mark">“</div>
+            <p>
+              The website looks elegant, feels smooth and
+              delivers a wonderful user experience.
+            </p>
+          </div>
+          <div>
+            <h4 class="client-name">Client Name</h4>
+            <span class="client-role">Website Project</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card reveal">
+          <div>
+            <div class="quote-mark">“</div>
+            <p>
+              Creative thinking, clean design and a professional
+              approach throughout the project.
+            </p>
+          </div>
+          <div>
+            <h4 class="client-name">Client Name</h4>
+            <span class="client-role">Creative Collaboration</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about-section" id="about">
+
+      <div class="reveal">
+        <p class="section-label">05 / A Little About Me</p>
+
+        <h2 class="about-heading">
+          Creativity<br>
+          Meets <em>Code.</em>
+        </h2>
+
+        <div class="signature">Qura Tul Ain</div>
+      </div>
+
+      <div class="about-text reveal">
+
+        <p>
+          I'm Qura Tul Ain, a creative web developer passionate
+          about bringing ideas to life through thoughtful design
+          and clean code.
+        </p>
+
+        <p>
+          I enjoy building modern, responsive websites that
+          combine visual beauty with functionality. My goal is
+          to create digital experiences that are simple,
+          memorable and enjoyable to use.
+        </p>
+
+        <p>
+          Every project is an opportunity to learn something new,
+          explore creativity and build something meaningful.
+        </p>
+
+        <a href="#contact" class="pill-btn">
+          Let's Connect <span>↗</span>
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+
+      <p class="section-label">06 / Get In Touch</p>
+
+      <h2 class="contact-title">
+        LET'S CREATE<br>SOMETHING.
+      </h2>
+
+      <p class="contact-description">
+        Have an idea, a project or an opportunity?
+        I'd love to hear from you.
+      </p>
+
+      <!-- Replace with your real email address -->
+      <a href="mailto:yourname@example.com" class="contact-email">
+        yourname@example.com
+      </a>
+
+      <div class="contact-links">
+
+        <!-- Replace # with your real profile URLs -->
+        <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+
+        <a href="#" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+
+        <a href="#" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+
+      <span>© <span id="year"></span> Qura Tul Ain. All Rights Reserved.</span>
+
+      <span class="footer-signature">Made with creativity ♡</span>
+
+      <a href="#home" style="text-decoration:none;color:inherit;">
+        Back to Top ↑
+      </a>
+
+    </footer>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+
+    // Automatic copyright year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Mobile navigation
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", function () {
+
+      const isOpen = navLinks.classList.toggle("active");
+
+      menuToggle.setAttribute("aria-expanded", isOpen);
+
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+
+    });
+
+    // Close mobile menu after clicking a link
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+
+      link.addEventListener("click", function () {
+
+        navLinks.classList.remove("active");
+
+        menuToggle.setAttribute("aria-expanded", "false");
+
+        menuToggle.textContent = "☰";
+
+      });
+
+    });
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+
+      const observer = new IntersectionObserver(function (entries) {
+
+        entries.forEach(function (entry) {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("visible");
+
+            observer.unobserve(entry.target);
+
+          }
+
+        });
+
+      }, {
+        threshold: 0.12
+      });
+
+      revealElements.forEach(function (element) {
+        observer.observe(element);
+      });
+
+    } else {
+
+      revealElements.forEach(function (element) {
+        element.classList.add("visible");
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
